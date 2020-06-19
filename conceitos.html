@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /*
+        em - relativo ao tamanho da fonte usada no elemento pai
+        rem - relativo ao tamanho da fonte do elemento root(html) = 16px
+        vw - viewport width
+        vh - viewport he
+      */
+        
+        html {
+            font-size: 62.5%;
+            /* 16* 62.5% = 10px */
+        }
+        
+        body {
+            background-color: aliceblue;
+        }
+        
+        div {
+            font-size: 20px
+        }
+        
+        p {
+            font-size: 2rem;
+        }
+        
+        spam {
+            font-size: 2rem;
+        }
+        
+        @media (max-width: 800px) {
+            html {
+                font-size: 60%
+            }
+            body {
+                background-color: blue;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            body {
+                background-color: #7159c1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>
+            BootCamp
+            <spam> RocketSeat </spam>
+        </p>
+    </div>
+    <div id="app">
+        <input type="text" name="nome" />
+        <button class="botao">Adicionar</button>
+    </div>
+
+    <script>
+        var inputElement = document.querySelector('div#app input[name=nome]');
+        var btnElement = document.querySelector('div#app button.botao');
+
+        btnElement.onclick = function() {
+            var text = inputElement.value;
+            alert(text)
+            var linkElement = document.createElement('a');
+            linkElement.setAttribute('href', 'http://rocketseat.com.br');
+
+            var textElement = document.createTextNode('Acessar RocketSeat')
+
+            linkElement.appendChild(textElement);
+            var divElement = document.querySelector('div#app');
+            divElement.appendChild(linkElement)
+            linkElement.style.textAlign = "center"
+            linkElement.style.color = "#f30"
+
+        }
+    </script>
+
+</body>
+
+</html>
