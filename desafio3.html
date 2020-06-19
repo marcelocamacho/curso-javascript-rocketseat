@@ -1,0 +1,96 @@
+<!--
+    Autor: Marcelo Santana Camacho
+    Data: 19/06/2020
+-->
+
+## Módulo 4
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+
+</head>
+
+<body>
+    <p>
+        <a href="#" onclick="exeUm()"> Exercício 1 </a>
+    </p>
+    <!-- Questão 1-->
+    <script>
+        function checaIdade(idade) {
+            return new Promise(function(resolve, reject) {
+                if (idade >= 18) {
+                    return resolve();
+                } else {
+                    return reject();
+                }
+            });
+        }
+
+        function exeUm() {
+            checaIdade(19).then(function() {
+                console.log("Maior que 18");
+            }).catch(function() {
+                console.log("Menor que 18");
+            });
+        }
+    </script>
+
+    <p>
+        <a href="#" onclick="exeDois()"> Exercício 2 </a>
+    </p>
+    <div id="exec2">
+    </div>
+    <!-- Questão 2-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function buscaRepo() {
+            var inputElement = document.querySelector('div#exec2 input');
+            var usuario = inputElement.value;
+            var ulElement = document.querySelector('ul');
+            if (usuario) {
+                var loadMessage = document.createTextNode('Carregando...');
+                var liLoad = document.createElement('li')
+                liLoad.appendChild(loadMessage);
+                ulElement.appendChild(liLoad);
+
+                axios.get(`https://api.github.com/users/${usuario}/repos`)
+                    .then(function(response) {
+                        ulElement.innerHTML = '';
+                        var repositorios = response.data;
+                        for (repo of repositorios) {
+                            var liElement = document.createElement('li');
+                            var textLiElement = document.createTextNode(repo.name)
+                            liElement.appendChild(textLiElement)
+                            ulElement.appendChild(liElement)
+                        }
+                    }).catch(function(error) {
+                        return alert(error.response.message = 'Usuário não encontrado')
+                    });
+            } else {
+                alert("inclua o nome do usuário GitHub")
+            }
+        }
+
+        function exeDois() {
+            var divElement = document.getElementById('exec2');
+            var inputElement = document.createElement('input');
+            inputElement.setAttribute('type', 'text');
+            inputElement.setAttribute('name', 'user');
+            var btnElement = document.createElement('button');
+            var textButtonElement = document.createTextNode('Buscar no gitHub')
+            btnElement.appendChild(textButtonElement)
+            divElement.appendChild(inputElement);
+            divElement.appendChild(btnElement);
+            btnElement.setAttribute('onclick', 'buscaRepo()');
+
+            var ulElement = document.createElement('ul');
+            var divElement = document.querySelector('div#exec2');
+            divElement.appendChild(ulElement);
+
+        }
+    </script>
+
+</body>
+
+</html>

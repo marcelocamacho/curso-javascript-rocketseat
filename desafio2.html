@@ -1,0 +1,144 @@
+<!--
+    Autor: Marcelo Santana Camacho
+    Data: 19/06/2020
+-->
+
+## Módulo 2
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <p>
+        <a href="#" onclick="exeUm()"> Exercício 1 </a>
+    </p>
+    <!-- Questão 1-->
+    <script>
+        var addSquare = function() {
+            var divAppElement = document.querySelector('div.app');
+            var square = document.createElement('div')
+            square.setAttribute('class', 'square');
+            square.style.width = 100;
+            square.style.height = 100;
+            square.style.backgroundColor = '#f30';
+            square.style.margin = 10;
+            square.style.zIndex = 1;
+            square.style.display = 'flex';
+
+            divAppElement.appendChild(square);
+        }
+        var exeUm = function() {
+
+            var verificaBotao = document.querySelector('.btn')
+            if (!verificaBotao) {
+                var bodyElement = document.querySelector('body');
+                var divElement = document.createElement('div');
+                divElement.setAttribute('class', 'container');
+                bodyElement.appendChild(divElement);
+                var divAppElement = document.createElement('div');
+                divAppElement.setAttribute('class', 'app');
+                divAppElement.style.display = 'flex';
+                divAppElement.style.width = 1200;
+                divAppElement.style.height = 300;
+                divAppElement.style.backgroundColor = '#f3f3f3';
+                divElement.appendChild(divAppElement);
+
+                var buttonElement;
+                var buttonElement = document.createElement('button');
+                buttonElement.setAttribute('class', 'btn')
+                var textElement = document.createTextNode('Criar');
+                buttonElement.appendChild(textElement);
+                divElement.appendChild(buttonElement);
+                buttonElement.setAttribute('onclick', 'addSquare()')
+
+            }
+        }
+    </script>
+
+    <p>
+        <a href="#" onclick="exeDois()"> Exercício 2 </a>
+    </p>
+    <!-- Questão 2-->
+    <script>
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+
+        function newcolor(square) {
+            var newColor = getRandomColor();
+            return square.style.backgroundColor = newColor;
+        }
+
+        var exeDois = function() {
+            squareElement = document.querySelectorAll('.square');
+            var values = [].map.call(squareElement, function(obj) {
+                return obj.setAttribute('onmouseover', 'newcolor(this)')
+            });
+        }
+    </script>
+    <!-- Questão 3-->
+    <p>
+        <a href="#" onclick="exeTres()"> Exercício 3 </a>
+    </p>
+    <script>
+        function exeTres() {
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+            var ulElement = document.createElement('ul')
+
+            if (!document.querySelector('div.app')) {
+                exeUm();
+            }
+            var divAppElement = document.querySelector('div.app');
+            divAppElement.appendChild(ulElement);
+            nomes.map((nome) => {
+                var nomeElement = document.createTextNode(nome);
+                var liElement = document.createElement('li')
+                liElement.appendChild(nomeElement);
+                ulElement.appendChild(liElement);
+            })
+        }
+    </script>
+    <!-- Questão 4-->
+    <p>
+        <a href="#" onclick="exeQuatro()"> Exercício 4 </a>
+    </p>
+    <script>
+        function adicionar() {
+            var inputElement = document.querySelector('input');
+            var novoNome = inputElement.value;
+            var ulElement = document.querySelector('ul');
+            liElement = document.createElement('li')
+            txtElement = document.createTextNode(novoNome);
+            liElement.appendChild(txtElement);
+            ulElement.appendChild(liElement)
+            inputElement.value = '';
+
+        }
+
+        function exeQuatro() {
+            if (!document.querySelector('div.app')) {
+                exeTres()
+            }
+            var divAppElement = document.querySelector('div.app');
+            var inputElement = document.createElement('input');
+            var btn2Element = document.createElement('button');
+            var txtElement = document.createTextNode('Adicionar');
+            inputElement.setAttribute('type', 'text');
+            inputElement.setAttribute('name', 'nome');
+            btn2Element.setAttribute('onClick', 'adicionar()');
+            btn2Element.appendChild(txtElement);
+            divAppElement.appendChild(inputElement);
+            divAppElement.appendChild(btn2Element);
+        }
+    </script>
+</body>
+
+</html>

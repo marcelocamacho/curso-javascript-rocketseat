@@ -1,0 +1,108 @@
+<!--
+    Autor: Marcelo Santana Camacho
+    Data: 19/06/2020
+-->
+
+< html>
+
+    <head>
+    </head>
+
+    <body>
+        <!-- 1ª   questão -->
+        <script>
+            var endereco = {
+                rua: "Rua dos pinheiros",
+                numero: 1293,
+                bairro: "Centro",
+                cidade: "São Paulo",
+                uf: "SP"
+            };
+
+            function formataResposta(endereco) {
+                var mensagem = "O usuário mora em " +
+                    endereco.cidade + "/" + endereco.uf +
+                    ", no bairro " + endereco.bairro +
+                    ", na rua \"" + endereco.rua + "\" com nº " + endereco.numero + "."
+                return (
+                    console.log(mensagem)
+                )
+            }
+            formataResposta(endereco);
+        </script>
+
+        <!-- 2ª   questão -->
+        <script>
+            function pares(x, y) {
+                var pares = [];
+                for (var i = x; i <= y; i++) {
+                    if (i % 2 === 0)
+                        pares.push(i)
+                }
+                return pares;
+            }
+            var retorno = pares(32, 321);
+            console.log(retorno);
+        </script>
+
+        <!-- 3ª   questão-->
+        <script>
+            function temHabilidade(skills) {
+                return (
+                    console.log(skills.includes("javascript"))
+                )
+            }
+            var skills = ["Javascript", "ReactJS", "React Native"];
+            temHabilidade(skills); //true ou false
+        </script>
+
+        <!-- 4ª   questão-->
+        <script>
+            function experiencia(anos) {
+                var nivel = "";
+                if (anos >= 0 && anos <= 1) {
+                    nivel = "Iniciante"
+                } else {
+                    if (anos > 1 && anos <= 3) {
+                        nivel = "Intermediario"
+                    } else {
+                        if (anos > 3 && anos <= 6) {
+                            nivel = "Avançado"
+                        } else {
+                            if (anos >= 7) {
+                                nivel = "Jedi Master"
+                            } else {
+                                return console.log("Digite uma opção válida")
+                            }
+                        }
+                    }
+                }
+                return console.log(nivel)
+            }
+            var anosEstudo = 7;
+            experiencia(anosEstudo);
+        </script>
+        <!--5ª questão-->
+        <script>
+            var usuarios = [{
+                nome: "Diego",
+                habilidades: ["Javascript", "ReactJS", "Redux"]
+            }, {
+                nome: "Gabriel",
+                habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+            }];
+
+            function formataHabilidades(Users) {
+                for (user of Users) {
+                    mensagem = "O " + user.nome +
+                        " possui as habilidades: " +
+                        user.habilidades;
+                    console.log(mensagem)
+                }
+                return;
+            }
+            formataHabilidades(usuarios);
+        </script>
+    </body>
+
+    </html>
